@@ -8,7 +8,9 @@ var server = Server(\nrt,
 a = Score.new([
     [0, ['/d_recv',
         SynthDef(\NRTsine, { |out, freq = 440|
-            Out.ar(out, SinOsc.ar(freq, 0, 0.2).dup)
+            Out.ar(out,
+                SinOsc.ar(freq: freq) * Line.kr(1, 0, 0.5, doneAction: Done.freeSelf)
+            )
         }).asBytes
     ]],
     [0.0, (x = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 269.292])],
