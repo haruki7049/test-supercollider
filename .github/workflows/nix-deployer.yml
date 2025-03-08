@@ -1,0 +1,24 @@
+name: nix-checkers
+
+on:
+  push:
+
+permissions: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - name: Install Nix
+        uses: cachix/install-nix-action@v26
+        with:
+          nix_path: nixpkgs=channel:nixos-unstable
+      - name: Run nix-build with flakes
+        run: nix build .#default -L
+      - name: Deploy
+        uses: actions/upload-artifact@v4
+        with:
+          name: output.wav
+          path: result/share/test-supercollider/output.wav
