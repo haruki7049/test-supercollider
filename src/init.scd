@@ -18,7 +18,7 @@ a = Score([
 a.recordNRT(
     outputFilePath: "output.wav".standardizePath,
     headerFormat: "wav",
-    sampleFormat: "int16",
+    sampleFormat: "int24",
     options: server.options,
     duration: 2,
     action: { "done".postln }
