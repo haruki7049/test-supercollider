@@ -10,6 +10,7 @@ a = Score.new([
         SynthDef(\NRTsine, { |out, freq = 440|
             Out.ar(out,
                 Saw.ar(freq: freq) * Line.kr(1, 0, 0.5, doneAction: Done.freeSelf)
+                //WhiteNoise.ar() * Line.kr(1, 0, 0.5, doneAction: Done.freeSelf)
             )
         }).asBytes
     ]],
