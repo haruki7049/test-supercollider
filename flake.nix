@@ -40,6 +40,7 @@
           devShells.default = pkgs.mkShell rec {
             nativeBuildInputs = [
               pkgs.nil
+              pkgs.supercollider
             ];
 
             shellHook = ''
