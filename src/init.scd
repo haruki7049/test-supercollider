@@ -11,23 +11,23 @@ a = Score.new([
             Out.ar(out, SinOsc.ar(freq, 0, 0.2).dup)
         }).asBytes
     ]],
-    [0, (x = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 269.292])],
-    [1, x.freeMsg],
+    [0.0, (x = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 269.292])],
+    [0.5, x.freeMsg],
 
-    [1, (y = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 302.270])],
-    [2, y.freeMsg],
+    [0.5, (y = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 302.270])],
+    [1.0, y.freeMsg],
 
-    [2, (y = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 339.286])],
-    [3, y.freeMsg],
+    [1.0, (y = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 339.286])],
+    [1.5, y.freeMsg],
 
-    [4, (x = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 269.292])],
-    [5, x.freeMsg],
+    [2.0, (x = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 269.292])],
+    [2.5, x.freeMsg],
 
-    [5, (y = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 302.270])],
-    [6, y.freeMsg],
+    [2.5, (y = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 302.270])],
+    [3.0, y.freeMsg],
 
-    [6, (y = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 339.286])],
-    [7, y.freeMsg],
+    [3.0, (y = Synth.basicNew(\NRTsine, server, 1000)).newMsg(args: [freq: 339.286])],
+    [3.5, y.freeMsg],
 ]);
 
 a.recordNRT(
@@ -35,7 +35,7 @@ a.recordNRT(
     headerFormat: "wav",
     sampleFormat: "int24",
     options: server.options,
-    duration: 7,
+    duration: 4,
     action: { "done".postln }
 );
 
