@@ -35,32 +35,29 @@
             version = "0.1.0-dev";
             src = lib.cleanSource ./.;
 
+            nativeBuildInputs = [
+              pkgs.just
+            ];
+
             buildInputs = [
               pkgs.supercollider
               pkgs.libxkbcommon
             ];
 
-            buildPhase = ''
-              runHook preBuild
-
+            preBuild = ''
               #> Running phase: buildPhase
               #> terminate called after throwing an instance of 'boost::filesystem::filesystem_error'
               #>   what():  boost::filesystem::create_directories: Permission denied: "/homeless-shelter/.config"
               #> /nix/store/mwmcmzyvan2pyd1z17xv3awxjs4b8793-stdenv-linux/setup: line 1767:    42 Aborted                 (core dumped) sclang src/main.scd
               export HOME=$TMPDIR
+            '';
 
-              sclang src/init.scd
-
-              runHook postBuild
+            buildPhase = ''
+              just build
             '';
 
             installPhase = ''
-              runHook preInstall
-
-              mkdir -p $out/share/test-supercollider
-              cp output.wav $out/share/test-supercollider/output.wav
-
-              runHook postInstall
+              just install $out
             '';
 
             QT_QPA_PLATFORM = "offscreen";
@@ -83,6 +80,7 @@
             nativeBuildInputs = [
               pkgs.nil
               pkgs.supercollider
+              pkgs.just
             ];
 
             shellHook = ''
