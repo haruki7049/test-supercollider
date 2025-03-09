@@ -53,11 +53,15 @@
             '';
 
             buildPhase = ''
+              runHook preBuild
               just build
+              runHook postBuild
             '';
 
             installPhase = ''
-              just install $out
+              runHook preInstall
+              just install $out/share/
+              runHook postInstall
             '';
 
             QT_QPA_PLATFORM = "offscreen";
